@@ -1,0 +1,34 @@
+﻿string first = "David"
+string second = "Michael"
+int arrayCount = GetArrayCount({1,2,3})
+int total = GetSum({1,2,3})
+string name = GetName(first, second)
+string bob = "dave age is " & " " & (false ? "bob" : "tim") == "tim" ? "40" : "99"
+
+
+int GetArrayCount(int[] array)
+{
+   int count = 0
+
+   foreach(int item in array)
+   {
+      count++
+   }
+   return count
+}
+
+int GetSum(int[] array)
+{
+   int total = 0
+
+   foreach(int item in array)
+   {
+      total = total + item
+   }
+   return total
+}
+
+string GetName(string first, string surname)
+{
+   return first & " " & surname
+}

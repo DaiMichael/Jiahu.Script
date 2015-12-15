@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EACDC8AF-64E5-4DBA-9F7C-B45E3A381D8B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JiahuScriptRuntime</RootNamespace>
+    <AssemblyName>JiahuScriptRuntime</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr4.Runtime, Version=4.5.1.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Antlr4\Antlr4.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Engine\Exceptions\BreakException.cs" />
+    <Compile Include="Engine\Exceptions\ReturnException.cs" />
+    <Compile Include="Engine\Delegates\Output.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreter.cs" />
+    <Compile Include="Engine\JiahuInterpreter.cs" />
+    <Compile Include="Engine\JiahuParserErrorListener.cs" />
+    <Compile Include="Engine\Processors\ComparatorProcessor.cs" />
+    <Compile Include="Engine\Processors\MathProcessor.cs" />
+    <Compile Include="Engine\ScriptAstGenerator.cs" />
+    <Compile Include="Engine\Compilers\FunctionReferenceCompiler.cs" />
+    <Compile Include="Engine\Compilers\SymbolCompiler.cs" />
+    <Compile Include="Exceptions\Compiler\FunctionParameterCountException.cs" />
+    <Compile Include="Exceptions\Compiler\InvalidReturnTypeException.cs" />
+    <Compile Include="Exceptions\Compiler\InvalidFunctionParameterException.cs" />
+    <Compile Include="Exceptions\Compiler\InvalidTypeException.cs" />
+    <Compile Include="Exceptions\Compiler\ScriptErrorException.cs" />
+    <Compile Include="Exceptions\Compiler\UndefinedFunctionException.cs" />
+    <Compile Include="Exceptions\Compiler\ValueCastException.cs" />
+    <Compile Include="Exceptions\Compiler\VariableNotDefinedException.cs" />
+    <Compile Include="Exceptions\External\ExternalFunctionException.cs" />
+    <Compile Include="Exceptions\External\MissingFunctionAttributeException.cs" />
+    <Compile Include="Exceptions\Memory\InvalidVariableTypeException.cs" />
+    <Compile Include="External\Attributes\FunctionAttribute.cs" />
+    <Compile Include="External\IFunctionDefinition.cs" />
+    <Compile Include="External\IParameter.cs" />
+    <Compile Include="External\Attributes\ParameterAttribute.cs" />
+    <Compile Include="External\Attributes\ReturnTypeAttribute.cs" />
+    <Compile Include="External\FunctionBase.cs" />
+    <Compile Include="External\IFunction.cs" />
+    <Compile Include="External\IRepository.cs" />
+    <Compile Include="External\IReturnType.cs" />
+    <Compile Include="External\Reflectors\DictionaryReflector.cs" />
+    <Compile Include="External\Reflectors\IObjectReflector.cs" />
+    <Compile Include="External\Reflectors\IReflector.cs" />
+    <Compile Include="External\Reflectors\ListReflector.cs" />
+    <Compile Include="External\Reflectors\MethodReflector.cs" />
+    <Compile Include="External\Reflectors\ObjectReflector.cs" />
+    <Compile Include="External\Reflectors\PropertyReflector.cs" />
+    <Compile Include="External\RepositoryRegisters\ReflectorRepositoryRegister.cs" />
+    <Compile Include="External\Repository.cs" />
+    <Compile Include="External\RepositoryRegisters\FunctionRepositoryRegisterBase.cs" />
+    <Compile Include="External\VariableRepository.cs" />
+    <Compile Include="External\RepositoryRegisters\RepositoryRegister.cs" />
+    <Compile Include="External\RepositoryRegisters\IRepositoryRegister.cs" />
+    <Compile Include="External\RepositoryRegisters\RepositoryRegisterBase.cs" />
+    <Compile Include="JiahuScript\JiahuGrammarConstants.cs" />
+    <Compile Include="Memory\Symbols\ObjectArrayVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\ObjectVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\ISymbolFacilitator.cs" />
+    <Compile Include="Engine\JiahuCompiler.cs" />
+    <Compile Include="Memory\Symbols\SymbolFacilitator.cs" />
+    <Compile Include="Exceptions\Memory\ScopeNotFoundException.cs" />
+    <Compile Include="Exceptions\Memory\SymbolNotFoundException.cs" />
+    <Compile Include="Exceptions\Memory\DuplicateScopeException.cs" />
+    <Compile Include="JiahuScriptEngine.cs" />
+    <Compile Include="JiahuScript\ParseTree\JiahuScriptBaseVisitor.cs" />
+    <Compile Include="JiahuScript\ParseTree\JiahuScriptLexer.cs" />
+    <Compile Include="JiahuScript\ParseTree\JiahuScriptParser.cs" />
+    <Compile Include="JiahuScript\ParseTree\JiahuScriptVisitor.cs" />
+    <Compile Include="Exceptions\Memory\DuplicateSymbolException.cs" />
+    <Compile Include="Memory\IManagedMemory.cs" />
+    <Compile Include="Memory\Scope.cs" />
+    <Compile Include="Memory\ScopeOwner.cs" />
+    <Compile Include="Memory\ScopeOwnerComparer.cs" />
+    <Compile Include="Memory\ScopeOwnerType.cs" />
+    <Compile Include="Memory\Symbols\BooleanArrayVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\BooleanVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\DateArrayVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\DateTimeArrayVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\DateTimeVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\DateVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\DecimalArrayVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\DecimalVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\FunctionSymbol.cs" />
+    <Compile Include="Memory\Symbols\IntArrayVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\ISymbolValueType.cs" />
+    <Compile Include="Memory\Symbols\StringArrayVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\SymbolValue.cs" />
+    <Compile Include="Memory\Symbols\IntVariableSymbol.cs" />
+    <Compile Include="Memory\ManagedMemory.cs" />
+    <Compile Include="Memory\Symbols\StringVariableSymbol.cs" />
+    <Compile Include="Memory\Symbols\Symbol.cs" />
+    <Compile Include="Memory\Symbols\SymbolType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Extensions\StringExtention.cs" />
+    <Compile Include="Utilities\Guard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="antlr4\antlr-4.5.1-complete.jar" />
+    <Content Include="antlr4\antlr-runtime-4.5.1.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <Antlr4 Include="JiahuScript\Grammar\JiahuScript.g4">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>JiahuScript.JiahuScript</CustomToolNamespace>
+    </Antlr4>
+  </ItemGroup>
+  <ItemGroup>
+    <AntlrTokens Include="JiahuScript\ParseTree\JiahuScript.tokens">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>JiahuScriptRuntime.JiahuScript.ParseTree</CustomToolNamespace>
+    </AntlrTokens>
+    <AntlrTokens Include="JiahuScript\ParseTree\JiahuScriptLexer.tokens">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>JiahuScriptRuntime.JiahuScript.ParseTree</CustomToolNamespace>
+    </AntlrTokens>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="antlr4\build.jiahu.bat" />
+    <None Include="antlr4\clean.jiahu.bat" />
+    <None Include="antlr4\set.jdk.bat" />
+    <None Include="antlr4\test.jiahu.bat" />
+    <None Include="antlr4\test.jiahu.gui.bat" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

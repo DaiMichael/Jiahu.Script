@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB6E51C2-7385-4C15-94E7-587CBF4BE225}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JiahuScriptRuntime.Tests</RootNamespace>
+    <AssemblyName>JiahuScriptRuntime.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr4.Runtime, Version=4.5.1.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Antlr4\Antlr4.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.1.1309.1617, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Moq\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\nUnit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Engine\Compilers\FunctionReferenceCompilerTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterConcaternateTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterExpressionTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterExternalFunctionTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterFunctionTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterSwitchTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterForEachTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterExternalVariablesTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterWhileTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterIfTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterInlineIfTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterMathTests.cs" />
+    <Compile Include="Engine\JiahuCompilerTests.cs" />
+    <Compile Include="Engine\Interpreters\ScriptInterpreterAssignmentTests.cs" />
+    <Compile Include="Engine\Processors\ComparatorProcessorTests.cs" />
+    <Compile Include="Engine\Processors\MathProcessorTests.cs" />
+    <Compile Include="Engine\ScriptAstGeneratorTests.cs" />
+    <Compile Include="Engine\Compilers\SymbolCompilerTests.cs" />
+    <Compile Include="Exceptions\Compiler\FunctionParameterCountExceptionTests.cs" />
+    <Compile Include="Exceptions\Compiler\InvalidReturnTypeExceptionTests.cs" />
+    <Compile Include="Exceptions\Compiler\InvalidFunctionParameterExceptionTests.cs" />
+    <Compile Include="Exceptions\Compiler\UndefinedFunctionExceptionTests.cs" />
+    <Compile Include="Exceptions\Compiler\InvalidTypeExceptionTests.cs" />
+    <Compile Include="Exceptions\Compiler\ValueCastExceptionTests.cs" />
+    <Compile Include="Exceptions\Compiler\VariableUndefinedExceptionTests.cs" />
+    <Compile Include="Exceptions\Compiler\ScriptErrorExceptionTests.cs" />
+    <Compile Include="Exceptions\External\ExternalFunctionExceptionTests.cs" />
+    <Compile Include="Exceptions\External\MissingFunctionAttributeExceptionTests.cs" />
+    <Compile Include="Exceptions\Memory\InvalidVariableTypeExceptionTests.cs" />
+    <Compile Include="Exceptions\Memory\ScopeNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\Memory\SymbolNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\Memory\DuplicateScopeExceptionTests.cs" />
+    <Compile Include="Exceptions\Memory\DuplicateSymbolInScopeExceptionTests.cs" />
+    <Compile Include="External\Attributes\ReturnTypeAttributeTests.cs" />
+    <Compile Include="External\Attributes\ParameterAttributeTests.cs" />
+    <Compile Include="External\Attributes\FunctionAttributeTests.cs" />
+    <Compile Include="External\FunctionTests.cs" />
+    <Compile Include="External\Reflectors\ListReflectorTests.cs" />
+    <Compile Include="External\Reflectors\DictionaryReflectorTests.cs" />
+    <Compile Include="External\Reflectors\MethodReflectorTests.cs" />
+    <Compile Include="External\Reflectors\PropertyReflectorTests.cs" />
+    <Compile Include="External\Reflectors\ObjectReflectorTests.cs" />
+    <Compile Include="External\RepositoryRegisters\FunctionRepositoryRegisterBaseTests.cs" />
+    <Compile Include="External\RepositoryRegisters\RepositoryRegisterTests.cs" />
+    <Compile Include="External\RepositoryTests.cs" />
+    <Compile Include="External\VariableRepositoryTests.cs" />
+    <Compile Include="Memory\ManagedMemoryTests.cs" />
+    <Compile Include="Memory\ScopeOwnerComparerTests.cs" />
+    <Compile Include="Memory\ScopeOwnerTests.cs" />
+    <Compile Include="Memory\ScopeTests.cs" />
+    <Compile Include="Memory\Symbols\ObjectArrayVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\BooleanArrayVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\ObjectVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\BooleanVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\DateTimeArrayVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\DateArrayVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\DecimalArrayVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\FunctionSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\IntArrayVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\StringArrayVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\StringVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\IntVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\DecimalVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\DateVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\DateTimeVariableSymbolTests.cs" />
+    <Compile Include="Memory\Symbols\SymbolFacilitatorTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Extensions\StringExtensionTests.cs" />
+    <Compile Include="Utilities\GuardTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Script\JiahuScriptRuntime\JiahuScriptRuntime.csproj">
+      <Project>{eacdc8af-64e5-4dba-9f7c-b45e3a381d8b}</Project>
+      <Name>JiahuScriptRuntime</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
