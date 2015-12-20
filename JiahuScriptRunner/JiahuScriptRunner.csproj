@@ -33,20 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr4.Runtime, Version=4.5.1.0, Culture=neutral, PublicKeyToken=e78b2c5abd1fcb3f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Antlr4\Antlr4.Runtime.dll</HintPath>
+    <Reference Include="Antlr4.Runtime">
+      <HintPath>..\lib\Antlr4.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraBars.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraTreeList.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v13.2, Version=13.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Newtonsoft.Json.dll</HintPath>
@@ -66,9 +55,6 @@
   <ItemGroup>
     <Compile Include="Domain\Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Domain\Configuration\ApplicationSettings.cs" />
-    <Compile Include="Domain\ExternalObjects\Currency.cs" />
-    <Compile Include="Domain\ExternalObjects\Exchange.cs" />
-    <Compile Include="Domain\ExternalObjects\Underlying.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,10 +85,20 @@
     <Compile Include="Windows\PropertyWindow.Designer.cs">
       <DependentUpon>PropertyWindow.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\brick.png" />
+    <None Include="Resources\plugin.png" />
+    <None Include="Resources\page_save.png" />
+    <None Include="Resources\page_white.png" />
+    <None Include="Resources\table_refresh.png" />
+    <None Include="Resources\chart_organisation.png" />
+    <None Include="Resources\script_lightning.png" />
+    <None Include="Resources\page_copy.png" />
+    <None Include="Resources\paste_plain.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\cross.png" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -143,21 +139,9 @@
     <Content Include="jiahu-script.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Client\Common\EVF.Client.Common.DocGen\EVF.Client.Common.DocGen.csproj">
-      <Project>{3f5e9f2f-fc08-43a1-b265-8e30f0d103f2}</Project>
-      <Name>EVF.Client.Common.DocGen</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Client\Common\EVF.External.Functions\EVF.External.Functions.csproj">
-      <Project>{d52ef23a-0bf4-4463-8db6-61981fe31651}</Project>
-      <Name>EVF.External.Functions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\EVF.Common.Domain\EVF.Common.Domain.csproj">
-      <Project>{D0288477-40D5-405E-9C15-BE24EFA21439}</Project>
-      <Name>EVF.Common.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\EVF.Common\EVF.Common.csproj">
-      <Project>{631B02FD-1192-463D-822D-D93FCC07BE75}</Project>
-      <Name>EVF.Common</Name>
+    <ProjectReference Include="..\JiahuScript.External.Examples\JiahuScript.External.Examples.csproj">
+      <Project>{139396a0-7f07-42e4-89fb-e3ad20a4a1be}</Project>
+      <Name>JiahuScript.External.Examples</Name>
     </ProjectReference>
     <ProjectReference Include="..\JiahuScriptRuntime\JiahuScriptRuntime.csproj">
       <Project>{eacdc8af-64e5-4dba-9f7c-b45e3a381d8b}</Project>

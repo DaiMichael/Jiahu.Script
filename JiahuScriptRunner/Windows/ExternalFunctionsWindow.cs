@@ -64,7 +64,7 @@ namespace JiahuScriptRunner.Windows
 
         private void lvFunctions_SelectedItemChanged(object sender, EventArgs e)
         {
-            if (lvFunctions.SelectedItems[0] != null)
+            if (lvFunctions.SelectedItems.Count > 0 && lvFunctions.SelectedItems[0] != null)
             {
                 ListViewItem listViewItem = lvFunctions.SelectedItems[0];
                 IFunction function = _functionRegister.Resolve<IFunction>(listViewItem.Text);

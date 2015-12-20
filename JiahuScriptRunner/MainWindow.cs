@@ -6,12 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Antlr4.Runtime.Tree;
-using DevExpress.XtraTab;
-using DevExpress.XtraTreeList.Nodes;
-using EVF.Client.Common.DocGen;
-using EVF.Common.StaticData;
-using EVF.Common.SummitData;
-using EVF.External.Functions.RepositoryRegister;
 using JiahuScriptRunner.Domain.Configuration;
 using JiahuScriptRunner.Visualiser;
 using JiahuScriptRunner.Windows;
@@ -19,8 +13,10 @@ using JiahuScriptRuntime.Engine;
 using JiahuScriptRuntime.External;
 using JiahuScriptRuntime.Memory;
 using JiahuScriptRuntime.Memory.Symbols;
+using JiahuScriptRuntime.External.RepositoryRegisters;
 using Newtonsoft.Json;
-using JsrUnderlying = JiahuScriptRunner.Domain.ExternalObjects.Underlying;
+using JiahuScript.External.Examples;
+using JiahuScript.External.Examples.Objects;
 
 namespace JiahuScriptRunner
 {
@@ -28,30 +24,38 @@ namespace JiahuScriptRunner
     {
         private string _scriptFilename = string.Empty;
         private readonly ApplicationConfiguration _applicationConfiguration = new ApplicationConfiguration();
+        private readonly VariableRepository _variableRepository = new VariableRepository();
+        private readonly IRepository _functionRepository = new Repository(new FunctionRegister());
 
         public MainWindow()
         {
             InitializeComponent();
 
             _applicationConfiguration = new ApplicationSettings().Load();
-            editScript_EditValueChanged(null, null);
+            textScript_TextChanged(null, null);
         }
 
-        private void barButtonExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ExitApplication();
+        }
+
+        private void SetupExternalFunctionsAndObjects()
+        {
+            Underlying underlying = GetExternalObject<Underlying>(new ApplicationSettings().Load().ExternalObjectUnderlyingDataLocation);
+            _variableRepository.Register(new ObjectVariableSymbol("U") { Value = underlying });
+        }
+
+
+        private void ExitApplication()
         {
             new ApplicationSettings().Save(_applicationConfiguration);
-            Close();
         }
 
-        private void buttonProperties_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void menuItemFileExit_Click(object sender, EventArgs e)
         {
-            using (var window = new PropertyWindow(_applicationConfiguration))
-            {
-                if (window.ShowDialog(this) == DialogResult.OK)
-                {
-                    new ApplicationSettings().Save(_applicationConfiguration);
-                }
-            }
+            ExitApplication();
+            Close();
         }
 
         private void buttonCompile_Click(object sender, EventArgs e)
@@ -73,156 +77,131 @@ namespace JiahuScriptRunner
             {
                 ResetAllTabs();
 
-                JiahuCompiler compiler = new JiahuCompiler(new Repository(new FunctionRepositoryRegister()));
-                compiler.Compile(editScript.Text);
+                JiahuCompiler compiler = new JiahuCompiler(_functionRepository);
+                compiler.Compile(textScript.Text);
 
-                SetTabWithUpdate(xtraTabConsole);
-                SetTabWithUpdate(xtraTabMemory);
+                SetTabWithUpdate(tabOutput);
+                SetTabWithUpdate(tabMemory);
                 PopulateMemoryView(compiler.SymbolTable);
 
-                editOutput.Text += @"Compile completed, valid Jiahu script." + Environment.NewLine;
+                textOutput.Text += @"Compile completed, valid Jiahu script." + Environment.NewLine;
             }
             catch (Exception exception)
             {
                 MessageBox.Show(this, exception.Message, "Compiler Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                editOutput.Text += exception.Message + Environment.NewLine;
+                textOutput.Text += exception.Message + Environment.NewLine;
 
-                treeMemory.Nodes.Clear();
-                SetTabWithError(xtraTabConsole);
+                lvMemory.Items.Clear();
+                SetTabWithError(tabOutput);
             }
         }
 
         private void PopulateMemoryView(IManagedMemory managedMemory)
         {
-            try
+            lvMemory.Items.Clear();
+
+            SymbolFacilitator symbolFacilitator = new SymbolFacilitator();
+            ListViewItem globalItem = lvMemory.Items.Add("functions");
+
+            foreach (FunctionSymbol symbol in managedMemory.FunctionSymbols)
             {
-                treeMemory.BeginUpdate();
-
-                SetupTreeMemoryColumns();
-                treeMemory.Nodes.Clear();
-
-                SymbolFacilitator symbolFacilitator = new SymbolFacilitator();
-                TreeListNode parentNode = treeMemory.AppendNode(new[] { "global" }, null);
-
-                foreach (FunctionSymbol symbol in managedMemory.FunctionSymbols)
+                AddToListItem(lvMemory.Items.Add(symbol.Name), string.Empty, "function", string.Empty, string.Empty);
+                
+                Scope scope = managedMemory.GetScope(new ScopeOwner(symbol.Name, ScopeOwnerType.Function, symbol.Id));
+                foreach (Symbol parameter in scope.Symbols)
                 {
-                    
-                    TreeListNode functionListNode = treeMemory.AppendNode(new[] { symbol.Name, "", "function" }, parentNode);
-                    Scope scope = managedMemory.GetScope(new ScopeOwner(symbol.Name, ScopeOwnerType.Function, symbol.Id));
-
-                    foreach (Symbol parameter in scope.Symbols)
-                    {
-                        treeMemory.AppendNode(new[] { string.Empty, parameter.Name, "variable", ((ISymbolValueType)parameter).ValueType, symbolFacilitator.GetValueAsString(parameter) }, functionListNode);
-                    }
-
-                    PopulateTreeWithChildScope(functionListNode, scope.Scopes);
+                    AddToListItem(lvMemory.Items.Add(string.Empty), parameter.Name, "variable", ((ISymbolValueType)parameter).ValueType, symbolFacilitator.GetValueAsString(parameter));
                 }
 
-                foreach(Scope scope in managedMemory.Scopes.Where(x => x.Owner.OwnerType != ScopeOwnerType.Function))
-                {
-                    TreeListNode scopeListNode = treeMemory.AppendNode(new[] { scope.Owner.Name }, parentNode);
-                    foreach (Symbol symbol in scope.Symbols)
-                    {
-                        treeMemory.AppendNode(new[] { string.Empty, symbol.Name, "variable", ((ISymbolValueType)symbol).ValueType, symbolFacilitator.GetValueAsString(symbol) }, scopeListNode);
-                    }
-
-                    if (scope.Scopes.Count > 0)
-                    {
-                        PopulateTreeWithChildScope(scopeListNode, scope.Scopes);
-                    }
-                }
+                PopulateTreeWithChildScope(scope.Scopes);
             }
-            finally
-            {
-                treeMemory.EndUpdate();
-                treeMemory.ExpandAll();
-            }
-            
-        }
 
-        private void PopulateTreeWithChildScope(TreeListNode scopeListNode, IList<Scope> scopes)
-        {
-            foreach (Scope scope in scopes)
+            foreach(Scope scope in managedMemory.Scopes.Where(x => x.Owner.OwnerType != ScopeOwnerType.Function))
             {
-                SymbolFacilitator symbolFacilitator = new SymbolFacilitator();
-                TreeListNode innerScopeNode = treeMemory.AppendNode(new[] { scope.Owner.Name, string.Empty, scope.Owner.OwnerType.ToString().ToLower() }, scopeListNode);
-
+                ListViewItem functionListItem = lvMemory.Items.Add(scope.Owner.Name);
                 foreach (Symbol symbol in scope.Symbols)
                 {
-                    treeMemory.AppendNode(new[] { string.Empty, symbol.Name, "variable", ((ISymbolValueType)symbol).ValueType, symbolFacilitator.GetValueAsString(symbol) }, innerScopeNode);
+                    AddToListItem(lvMemory.Items.Add(string.Empty), symbol.Name, "variable", ((ISymbolValueType)symbol).ValueType, symbolFacilitator.GetValueAsString(symbol));
                 }
 
                 if (scope.Scopes.Count > 0)
                 {
-                    PopulateTreeWithChildScope(innerScopeNode, scope.Scopes);
+                    PopulateTreeWithChildScope(scope.Scopes);
                 }
             }
         }
 
-        private void SetupTreeMemoryColumns()
+        private void AddToListItem(ListViewItem item, string subItemOne, string subItemTwo, string subItemThree, string subItemFour)
         {
-            treeMemory.Columns.Clear();
-            treeMemory.Columns.Add();
-            treeMemory.Columns[0].Caption = "Scope";
-            treeMemory.Columns[0].VisibleIndex = 0;
-            treeMemory.Columns.Add();
-            treeMemory.Columns[1].Caption = "Symbol Name";
-            treeMemory.Columns[1].VisibleIndex = 1;
-            treeMemory.Columns.Add();
-            treeMemory.Columns[2].Caption = "Symbol Type";
-            treeMemory.Columns[2].VisibleIndex = 2;
-            treeMemory.Columns.Add();
-            treeMemory.Columns[3].Caption = "Symbol Data Type";
-            treeMemory.Columns[3].VisibleIndex = 3;
-            treeMemory.Columns.Add();
-            treeMemory.Columns[4].Caption = "Symbol Value";
-            treeMemory.Columns[4].VisibleIndex = 4;
+            item.SubItems.Add(subItemOne);
+            item.SubItems.Add(subItemTwo);
+            item.SubItems.Add(subItemThree);
+            item.SubItems.Add(subItemFour);
         }
 
-        private void SetTabWithUpdate(XtraTabPage tabPage)
+        private void PopulateTreeWithChildScope(IList<Scope> scopes)
         {
-            tabPage.Appearance.Header.BackColor = Color.LightGreen;
-        }
-
-        private void SetTabWithError(XtraTabPage tabPage)
-        {
-            tabPage.Appearance.Header.BackColor = Color.OrangeRed;
-        }
-
-        private void ResetTab(XtraTabPage tabPage)
-        {
-            tabPage.Appearance.Header.BackColor = new Color();
-        }
-
-        private void editScript_EditValueChanged(object sender, EventArgs e)
-        {
-            if (editScript.Text.Length > 0)
+            foreach (Scope scope in scopes)
             {
-                buttonCompile.Enabled = true;
-                buttonRun.Enabled = true;
-                buttonViewParseTree.Enabled = true;
-                barButtonSave.Enabled = true;
-                barButtonSaveAs.Enabled = true;
-                barButtonViewTree.Enabled = true;
-                barButtonCompile.Enabled = true;
-                barButtonViewTree.Enabled = true;
-                barButtonRun.Enabled = true;
+                SymbolFacilitator symbolFacilitator = new SymbolFacilitator();
+                AddToListItem(lvMemory.Items.Add(scope.Owner.Name), string.Empty, scope.Owner.OwnerType.ToString().ToLower(), string.Empty, string.Empty);
+
+                foreach (Symbol symbol in scope.Symbols)
+                {
+                    AddToListItem(lvMemory.Items.Add(string.Empty), "variable", symbol.Name, ((ISymbolValueType)symbol).ValueType, symbolFacilitator.GetValueAsString(symbol));
+                }
+
+                if (scope.Scopes.Count > 0)
+                {
+                    PopulateTreeWithChildScope(scope.Scopes);
+                }
+            }
+        }
+
+        private void SetTabWithUpdate(TabPage tabPage)
+        {
+            tabPage.ImageKey = "info";
+        }
+
+        private void SetTabWithError(TabPage tabPage)
+        {
+            tabPage.ImageKey = "error";
+        }
+
+        private void ResetTab(TabPage tabPage)
+        {
+            tabPage.ImageKey = "none";
+        }
+
+        private void textScript_TextChanged(object sender, EventArgs e)
+        {
+            if (textScript.Text.Length > 0)
+            {
+                buttonRunScript.Enabled = true;
+                menuItemFileSave.Enabled = true;
+                menuItemFileSaveAs.Enabled = true;
+                menuItemBuildCompile.Enabled = true;
+                menuItemBuildGrammarTree.Enabled = true;
+                menuItemBuildRun.Enabled = true;
+                menuStripCompile.Enabled = true;
+                menuStripGrammarTree.Enabled = true;
+                menuStripRun.Enabled = true;
             }
             else
             {
-                buttonCompile.Enabled = false;
-                buttonRun.Enabled = false;
-                buttonViewParseTree.Enabled = false;
-                barButtonSave.Enabled = false;
-                barButtonSaveAs.Enabled = false;
-                barButtonViewTree.Enabled = false;
-                barButtonCompile.Enabled = false;
-                barButtonViewTree.Enabled = false;
-                barButtonRun.Enabled = false;
+                buttonRunScript.Enabled = false;
+                menuItemFileSave.Enabled = false;
+                menuItemFileSaveAs.Enabled = false;
+                menuItemBuildCompile.Enabled = false;
+                menuItemBuildGrammarTree.Enabled = false;
+                menuItemBuildRun.Enabled = false;
+                menuStripCompile.Enabled = false;
+                menuStripGrammarTree.Enabled = false;
+                menuStripRun.Enabled = false;
             }
         }
 
-        private void barButtonSaveAs_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void menuItemFileSaveAs_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
@@ -245,26 +224,26 @@ namespace JiahuScriptRunner
                             return;
                         }
                     }
-                    File.WriteAllText(saveFileDialog.FileName, editScript.Text, Encoding.UTF8);
+                    File.WriteAllText(saveFileDialog.FileName, textScript.Text, Encoding.UTF8);
                     _scriptFilename = saveFileDialog.FileName;
                     _applicationConfiguration.SaveLocation = Path.GetDirectoryName(saveFileDialog.FileName);
                 }
             }
         }
 
-        private void barButtonSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void menuItemFileSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(_scriptFilename))
             {
-                barButtonSaveAs_ItemClick(sender, e);
+                menuItemFileSaveAs_Click(sender, e);
             }
             else
             {
-                File.WriteAllText(_scriptFilename, editScript.Text, Encoding.UTF8);    
+                File.WriteAllText(_scriptFilename, textScript.Text, Encoding.UTF8);    
             }
         }
 
-        private void barButtonOpen_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void menuItemFileOpen_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
@@ -275,7 +254,7 @@ namespace JiahuScriptRunner
 
                 if (fileDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    editScript.Text =  File.ReadAllText(fileDialog.FileName, Encoding.UTF8);
+                    textScript.Text =  File.ReadAllText(fileDialog.FileName, Encoding.UTF8);
                     _scriptFilename = fileDialog.FileName;
                     _applicationConfiguration.SaveLocation = Path.GetDirectoryName(fileDialog.FileName);
                 }
@@ -284,33 +263,28 @@ namespace JiahuScriptRunner
 
         private void ResetAllTabs()
         {
-            ResetTab(xtraTabResults);
-            ResetTab(xtraTabConsole);
-            ResetTab(xtraTabParseTree);
-            ResetTab(xtraTabMemory);
+            ResetTab(tabGrammarTree);
+            ResetTab(tabOutput);
+            ResetTab(tabMemory);
+            ResetTab(tabResult);
         }
 
-        private void xtraTabScript_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
+        private void tabResults_Changed(object sender, EventArgs e)
         {
-            ResetTab(e.Page);
+            ResetTab((TabPage)sender);
         }
 
-        private void buttonViewParseTree_Click(object sender, EventArgs e)
-        {
-            DrawParseTree();
-        }
-
-        private void barButtonRun_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void menuItemBuildRun_Click(object sender, EventArgs e)
         {
             RunScript();
         }
 
-        private void barButtonCompile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void menuItemBuildCompile_Click(object sender, EventArgs e)
         {
             CompileScript();
         }
 
-        private void barButtonViewTree_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void menuItemBuildGrammarTree_Click(object sender, EventArgs e)
         {
             DrawParseTree();
         }
@@ -321,26 +295,25 @@ namespace JiahuScriptRunner
             {
                 ResetAllTabs();
 
-                IParseTree tree = new ScriptAstGenerator().Generate(editScript.Text);
+                IParseTree tree = new ScriptAstGenerator().Generate(textScript.Text);
                 VisualAst visualiser = new VisualAst(new AstTreeNode(tree));
-                pictureParseTree.Image = visualiser.Draw();
+                pictureGrammarTree.Image = visualiser.Draw();
 
-                editOutput.Text += "Parse tree drawn..." + Environment.NewLine;
+                textOutput.Text += "Parse tree drawn..." + Environment.NewLine;
 
-                SetTabWithUpdate(xtraTabConsole);
-                SetTabWithUpdate(xtraTabParseTree);
+                SetTabWithUpdate(tabOutput);
+                SetTabWithUpdate(tabGrammarTree);
             }
             catch (Exception exception)
             {
                 MessageBox.Show(this, exception.Message, "Error drawing parse tree.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                editOutput.Text += exception.Message + Environment.NewLine;
-                pictureParseTree.Image = null;
-
-                SetTabWithError(xtraTabConsole);
+                textOutput.Text += exception.Message + Environment.NewLine;
+                pictureGrammarTree.Image = null;
+                SetTabWithError(tabOutput);
             }
         }
 
-        private void buttonRun_Click(object sender, EventArgs e)
+        private void buttonRunScript_Click(object sender, EventArgs e)
         {
             RunScript();
         }
@@ -351,53 +324,63 @@ namespace JiahuScriptRunner
             {
                 ResetAllTabs();
 
-                JsrUnderlying underlying = GetExternalObject<JsrUnderlying>(new ApplicationSettings().Load().ExternalObjectUnderlyingDataLocation);
-                VariableRepository variableRepository = new VariableRepository();
-                variableRepository.Register(new ObjectVariableSymbol("U") { Value =  underlying });
-                
-                JiahuInterpreter interpreter = new JiahuInterpreter(new Repository(new FunctionRepositoryRegister()), PrintToScreen);
-                ManagedMemory.ApplyGlobalVariables(interpreter.ManagedMemory, variableRepository);
+                JiahuInterpreter interpreter = new JiahuInterpreter(_functionRepository, PrintToScreen);
+                ManagedMemory.ApplyGlobalVariables(interpreter.ManagedMemory, _variableRepository);
 
-                interpreter.Run(editScript.Text);
-                editOutput.Text += "Jiahu script finished." + Environment.NewLine;
+                interpreter.Run(textScript.Text);
+                textOutput.Text += "Jiahu script finished." + Environment.NewLine;
 
-                SetTabWithUpdate(xtraTabConsole);
-                SetTabWithUpdate(xtraTabMemory);
+                SetTabWithUpdate(tabOutput);
+                SetTabWithUpdate(tabMemory);
                 PopulateMemoryView(interpreter.ManagedMemory);
             }
             catch (Exception exception)
             {
                 MessageBox.Show(this, exception.Message, "Script Run Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                editOutput.Text += exception.Message + Environment.NewLine;
+                textOutput.Text += exception.Message + Environment.NewLine;
 
-                treeMemory.Nodes.Clear();
-                SetTabWithError(xtraTabConsole);
-            }
-        }
-
-        private void barButtonExternalFunctions_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FunctionRepositoryRegister register = new FunctionRepositoryRegister();
-            register.Setup(new Counterparty(), new ClientData());
-            register.Setup(new Underlying());
-
-            using (ExternalFunctionsWindow window = new ExternalFunctionsWindow(register))
-            {
-                window.ShowDialog(this);
+                lvMemory.Items.Clear();
+                SetTabWithError(tabOutput);
             }
         }
 
         private void PrintToScreen(string message)
         {
-            editScriptOutput.Text += message + Environment.NewLine;
-            SetTabWithUpdate(xtraTabResults);
+            textResult.Text += message + Environment.NewLine;
+            SetTabWithUpdate(tabResult);
         }
 
-        private void barButtonItemExternalObjects_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void menuStripGrammarTree_Click(object sender, EventArgs e)
         {
-            List<object> externalObjects = new List<object> {GetExternalObject<JsrUnderlying>(new ApplicationSettings().Load().ExternalObjectUnderlyingDataLocation)};
+            DrawParseTree();
+        }
 
-            using (ExternalObjectsWindow window = new ExternalObjectsWindow(externalObjects))
+        private void menuItemEditCut_Click(object sender, EventArgs e)
+        {
+            textScript.Cut();
+        }
+
+        private void menuItemEditCopy_Click(object sender, EventArgs e)
+        {
+            textScript.Copy();
+        }
+
+        private void menuItemEditPaste_Click(object sender, EventArgs e)
+        {
+            textScript.Paste();
+        }
+
+        private void menuStripExternalFunctions_Click(object sender, EventArgs e)
+        {
+            using (ExternalFunctionsWindow window = new ExternalFunctionsWindow(new FunctionRegister()))
+            {
+                window.ShowDialog(this);
+            }
+        }
+
+        private void menuStripExternalObjects_Click(object sender, EventArgs e)
+        {
+            using (ExternalObjectsWindow window = new ExternalObjectsWindow(_variableRepository.Select(x => x.Value).ToList()))
             {
                 window.ShowDialog(this);
             }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PropertyWindow));
-            this.buttonOk = new DevExpress.XtraEditors.SimpleButton();
-            this.buttonCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.buttonOk = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
@@ -89,8 +89,8 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.SimpleButton buttonOk;
-        private DevExpress.XtraEditors.SimpleButton buttonCancel;
+        private System.Windows.Forms.Button buttonOk;
+        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.PropertyGrid propertyGrid;
     }
 }

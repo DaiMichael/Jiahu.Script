@@ -28,400 +28,486 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.ribbonMenu = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.barButtonExit = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonGalleryBarItem1 = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.barButtonRun = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonCompile = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonViewTree = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonProperties = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonSaveAs = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonSave = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonOpen = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonExternalFunctions = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItemExternalObjects = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroupFile = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroupScriptActions = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroupUtilities = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.splitMain = new DevExpress.XtraEditors.SplitContainerControl();
-            this.buttonViewParseTree = new DevExpress.XtraEditors.SimpleButton();
-            this.buttonCompile = new DevExpress.XtraEditors.SimpleButton();
-            this.buttonRun = new DevExpress.XtraEditors.SimpleButton();
-            this.editScript = new DevExpress.XtraEditors.MemoEdit();
-            this.xtraTabOutput = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabResults = new DevExpress.XtraTab.XtraTabPage();
-            this.editScriptOutput = new DevExpress.XtraEditors.MemoEdit();
-            this.xtraTabConsole = new DevExpress.XtraTab.XtraTabPage();
-            this.editOutput = new DevExpress.XtraEditors.MemoEdit();
-            this.xtraTabParseTree = new DevExpress.XtraTab.XtraTabPage();
-            this.pictureParseTree = new DevExpress.XtraEditors.PictureEdit();
-            this.xtraTabMemory = new DevExpress.XtraTab.XtraTabPage();
-            this.treeMemory = new DevExpress.XtraTreeList.TreeList();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonMenu)).BeginInit();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
+            this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemBuild = new System.Windows.Forms.ToolStripMenuItem();
+            this.hELPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.splitMain = new System.Windows.Forms.SplitContainer();
+            this.textScript = new System.Windows.Forms.TextBox();
+            this.buttonRunScript = new System.Windows.Forms.Button();
+            this.tabResults = new System.Windows.Forms.TabControl();
+            this.tabResult = new System.Windows.Forms.TabPage();
+            this.textResult = new System.Windows.Forms.TextBox();
+            this.tabOutput = new System.Windows.Forms.TabPage();
+            this.textOutput = new System.Windows.Forms.TextBox();
+            this.tabGrammarTree = new System.Windows.Forms.TabPage();
+            this.tabMemory = new System.Windows.Forms.TabPage();
+            this.lvMemory = new System.Windows.Forms.ListView();
+            this.chScope = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chSymbolType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chSymbolDataType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chSymbolValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ilTabs = new System.Windows.Forms.ImageList(this.components);
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.pictureGrammarTree = new System.Windows.Forms.PictureBox();
+            this.menuStripCompile = new System.Windows.Forms.ToolStripButton();
+            this.menuStripGrammarTree = new System.Windows.Forms.ToolStripButton();
+            this.menuStripRun = new System.Windows.Forms.ToolStripButton();
+            this.menuStripExternalFunctions = new System.Windows.Forms.ToolStripButton();
+            this.menuStripExternalObjects = new System.Windows.Forms.ToolStripButton();
+            this.menuItemFileOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemFileSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemFileExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemEditCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemEditCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemEditPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemBuildCompile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemBuildGrammarTree = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemBuildRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainMenu.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
+            this.splitMain.Panel1.SuspendLayout();
+            this.splitMain.Panel2.SuspendLayout();
             this.splitMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editScript.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabOutput)).BeginInit();
-            this.xtraTabOutput.SuspendLayout();
-            this.xtraTabResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editScriptOutput.Properties)).BeginInit();
-            this.xtraTabConsole.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.editOutput.Properties)).BeginInit();
-            this.xtraTabParseTree.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureParseTree.Properties)).BeginInit();
-            this.xtraTabMemory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeMemory)).BeginInit();
+            this.tabResults.SuspendLayout();
+            this.tabResult.SuspendLayout();
+            this.tabOutput.SuspendLayout();
+            this.tabGrammarTree.SuspendLayout();
+            this.tabMemory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGrammarTree)).BeginInit();
             this.SuspendLayout();
             // 
-            // ribbonMenu
+            // mainMenu
             // 
-            this.ribbonMenu.ExpandCollapseItem.Id = 0;
-            this.ribbonMenu.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonMenu.ExpandCollapseItem,
-            this.barButtonExit,
-            this.ribbonGalleryBarItem1,
-            this.barButtonRun,
-            this.barButtonCompile,
-            this.barButtonViewTree,
-            this.barButtonProperties,
-            this.barButtonSaveAs,
-            this.barButtonSave,
-            this.barButtonOpen,
-            this.barButtonExternalFunctions,
-            this.barButtonItemExternalObjects});
-            this.ribbonMenu.Location = new System.Drawing.Point(0, 0);
-            this.ribbonMenu.MaxItemId = 13;
-            this.ribbonMenu.Name = "ribbonMenu";
-            this.ribbonMenu.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPageHome});
-            this.ribbonMenu.ShowToolbarCustomizeItem = false;
-            this.ribbonMenu.Size = new System.Drawing.Size(1442, 117);
-            this.ribbonMenu.StatusBar = this.ribbonStatusBar;
-            this.ribbonMenu.Toolbar.ShowCustomizeItem = false;
-            this.ribbonMenu.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+            this.mainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemFile,
+            this.menuItemEdit,
+            this.menuItemBuild,
+            this.hELPToolStripMenuItem});
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(1045, 28);
+            this.mainMenu.TabIndex = 0;
+            this.mainMenu.Text = "menuStrip1";
             // 
-            // barButtonExit
+            // menuItemFile
             // 
-            this.barButtonExit.Caption = "Exit";
-            this.barButtonExit.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonExit.Glyph")));
-            this.barButtonExit.Id = 1;
-            this.barButtonExit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonExit.LargeGlyph")));
-            this.barButtonExit.Name = "barButtonExit";
-            this.barButtonExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonExit_ItemClick);
+            this.menuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemFileOpen,
+            this.menuItemFileSaveAs,
+            this.menuItemFileSave,
+            this.toolStripSeparator1,
+            this.menuItemFileExit});
+            this.menuItemFile.Name = "menuItemFile";
+            this.menuItemFile.Size = new System.Drawing.Size(47, 24);
+            this.menuItemFile.Text = "FILE";
             // 
-            // ribbonGalleryBarItem1
+            // menuItemFileSaveAs
             // 
-            this.ribbonGalleryBarItem1.Caption = "ribbonGalleryBarItem1";
-            this.ribbonGalleryBarItem1.Id = 3;
-            this.ribbonGalleryBarItem1.Name = "ribbonGalleryBarItem1";
+            this.menuItemFileSaveAs.Name = "menuItemFileSaveAs";
+            this.menuItemFileSaveAs.Size = new System.Drawing.Size(173, 26);
+            this.menuItemFileSaveAs.Text = "Save As...";
+            this.menuItemFileSaveAs.Click += new System.EventHandler(this.menuItemFileSaveAs_Click);
             // 
-            // barButtonRun
+            // toolStripSeparator1
             // 
-            this.barButtonRun.Caption = "Run";
-            this.barButtonRun.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonRun.Glyph")));
-            this.barButtonRun.Id = 4;
-            this.barButtonRun.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonRun.LargeGlyph")));
-            this.barButtonRun.Name = "barButtonRun";
-            this.barButtonRun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRun_ItemClick);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
             // 
-            // barButtonCompile
+            // menuItemEdit
             // 
-            this.barButtonCompile.Caption = "Compile";
-            this.barButtonCompile.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonCompile.Glyph")));
-            this.barButtonCompile.Id = 5;
-            this.barButtonCompile.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonCompile.LargeGlyph")));
-            this.barButtonCompile.Name = "barButtonCompile";
-            this.barButtonCompile.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonCompile_ItemClick);
+            this.menuItemEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemEditCut,
+            this.menuItemEditCopy,
+            this.menuItemEditPaste});
+            this.menuItemEdit.Name = "menuItemEdit";
+            this.menuItemEdit.Size = new System.Drawing.Size(52, 24);
+            this.menuItemEdit.Text = "EDIT";
             // 
-            // barButtonViewTree
+            // menuItemBuild
             // 
-            this.barButtonViewTree.Caption = "View Parse Tree";
-            this.barButtonViewTree.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonViewTree.Glyph")));
-            this.barButtonViewTree.Id = 6;
-            this.barButtonViewTree.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonViewTree.LargeGlyph")));
-            this.barButtonViewTree.Name = "barButtonViewTree";
-            this.barButtonViewTree.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonViewTree_ItemClick);
+            this.menuItemBuild.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemBuildCompile,
+            this.menuItemBuildGrammarTree,
+            this.menuItemBuildRun});
+            this.menuItemBuild.Name = "menuItemBuild";
+            this.menuItemBuild.Size = new System.Drawing.Size(62, 24);
+            this.menuItemBuild.Text = "BUILD";
             // 
-            // barButtonProperties
+            // hELPToolStripMenuItem
             // 
-            this.barButtonProperties.Caption = "Properties";
-            this.barButtonProperties.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonProperties.Glyph")));
-            this.barButtonProperties.Id = 7;
-            this.barButtonProperties.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonProperties.LargeGlyph")));
-            this.barButtonProperties.Name = "barButtonProperties";
-            this.barButtonProperties.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.buttonProperties_ItemClick);
+            this.hELPToolStripMenuItem.Name = "hELPToolStripMenuItem";
+            this.hELPToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.hELPToolStripMenuItem.Text = "HELP";
             // 
-            // barButtonSaveAs
+            // toolStrip
             // 
-            this.barButtonSaveAs.Caption = "Save As";
-            this.barButtonSaveAs.Enabled = false;
-            this.barButtonSaveAs.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonSaveAs.Glyph")));
-            this.barButtonSaveAs.Id = 8;
-            this.barButtonSaveAs.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonSaveAs.LargeGlyph")));
-            this.barButtonSaveAs.Name = "barButtonSaveAs";
-            this.barButtonSaveAs.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSaveAs_ItemClick);
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripCompile,
+            this.menuStripGrammarTree,
+            this.menuStripRun,
+            this.toolStripSeparator,
+            this.menuStripExternalFunctions,
+            this.menuStripExternalObjects});
+            this.toolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStrip.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(1045, 27);
+            this.toolStrip.TabIndex = 1;
             // 
-            // barButtonSave
+            // statusStrip
             // 
-            this.barButtonSave.Caption = "Save";
-            this.barButtonSave.Enabled = false;
-            this.barButtonSave.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonSave.Glyph")));
-            this.barButtonSave.Id = 9;
-            this.barButtonSave.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonSave.LargeGlyph")));
-            this.barButtonSave.Name = "barButtonSave";
-            this.barButtonSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSave_ItemClick);
-            // 
-            // barButtonOpen
-            // 
-            this.barButtonOpen.Caption = "Open";
-            this.barButtonOpen.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonOpen.Glyph")));
-            this.barButtonOpen.Id = 10;
-            this.barButtonOpen.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonOpen.LargeGlyph")));
-            this.barButtonOpen.Name = "barButtonOpen";
-            this.barButtonOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonOpen_ItemClick);
-            // 
-            // barButtonExternalFunctions
-            // 
-            this.barButtonExternalFunctions.Caption = "External Functions";
-            this.barButtonExternalFunctions.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonExternalFunctions.Glyph")));
-            this.barButtonExternalFunctions.Id = 11;
-            this.barButtonExternalFunctions.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonExternalFunctions.LargeGlyph")));
-            this.barButtonExternalFunctions.Name = "barButtonExternalFunctions";
-            this.barButtonExternalFunctions.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonExternalFunctions_ItemClick);
-            // 
-            // barButtonItemExternalObjects
-            // 
-            this.barButtonItemExternalObjects.Caption = "External Objects";
-            this.barButtonItemExternalObjects.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItemExternalObjects.Glyph")));
-            this.barButtonItemExternalObjects.Id = 12;
-            this.barButtonItemExternalObjects.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItemExternalObjects.LargeGlyph")));
-            this.barButtonItemExternalObjects.Name = "barButtonItemExternalObjects";
-            this.barButtonItemExternalObjects.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemExternalObjects_ItemClick);
-            // 
-            // ribbonPageHome
-            // 
-            this.ribbonPageHome.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroupFile,
-            this.ribbonPageGroupScriptActions,
-            this.ribbonPageGroupUtilities});
-            this.ribbonPageHome.Name = "ribbonPageHome";
-            this.ribbonPageHome.Text = "Home";
-            // 
-            // ribbonPageGroupFile
-            // 
-            this.ribbonPageGroupFile.ItemLinks.Add(this.barButtonOpen);
-            this.ribbonPageGroupFile.ItemLinks.Add(this.barButtonSaveAs);
-            this.ribbonPageGroupFile.ItemLinks.Add(this.barButtonSave);
-            this.ribbonPageGroupFile.ItemLinks.Add(this.barButtonExit);
-            this.ribbonPageGroupFile.Name = "ribbonPageGroupFile";
-            this.ribbonPageGroupFile.Text = "File";
-            // 
-            // ribbonPageGroupScriptActions
-            // 
-            this.ribbonPageGroupScriptActions.ItemLinks.Add(this.barButtonRun);
-            this.ribbonPageGroupScriptActions.ItemLinks.Add(this.barButtonCompile);
-            this.ribbonPageGroupScriptActions.ItemLinks.Add(this.barButtonViewTree);
-            this.ribbonPageGroupScriptActions.Name = "ribbonPageGroupScriptActions";
-            this.ribbonPageGroupScriptActions.Text = "Script Actions";
-            // 
-            // ribbonPageGroupUtilities
-            // 
-            this.ribbonPageGroupUtilities.ItemLinks.Add(this.barButtonExternalFunctions);
-            this.ribbonPageGroupUtilities.ItemLinks.Add(this.barButtonItemExternalObjects);
-            this.ribbonPageGroupUtilities.ItemLinks.Add(this.barButtonProperties);
-            this.ribbonPageGroupUtilities.Name = "ribbonPageGroupUtilities";
-            this.ribbonPageGroupUtilities.Text = "Utilities";
-            // 
-            // ribbonStatusBar
-            // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 811);
-            this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.ribbonMenu;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1442, 27);
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Location = new System.Drawing.Point(0, 525);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(1045, 22);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "statusStrip1";
             // 
             // splitMain
             // 
             this.splitMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitMain.Horizontal = false;
-            this.splitMain.Location = new System.Drawing.Point(0, 117);
+            this.splitMain.Location = new System.Drawing.Point(0, 55);
             this.splitMain.Name = "splitMain";
-            this.splitMain.Panel1.Controls.Add(this.buttonViewParseTree);
-            this.splitMain.Panel1.Controls.Add(this.buttonCompile);
-            this.splitMain.Panel1.Controls.Add(this.buttonRun);
-            this.splitMain.Panel1.Controls.Add(this.editScript);
-            this.splitMain.Panel1.Text = "PanelTop";
-            this.splitMain.Panel2.Controls.Add(this.xtraTabOutput);
-            this.splitMain.Panel2.Text = "PanelBottom";
-            this.splitMain.Size = new System.Drawing.Size(1442, 694);
-            this.splitMain.SplitterPosition = 339;
-            this.splitMain.TabIndex = 2;
+            this.splitMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // buttonViewParseTree
+            // splitMain.Panel1
             // 
-            this.buttonViewParseTree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonViewParseTree.Enabled = false;
-            this.buttonViewParseTree.Location = new System.Drawing.Point(1193, 315);
-            this.buttonViewParseTree.Name = "buttonViewParseTree";
-            this.buttonViewParseTree.Size = new System.Drawing.Size(75, 23);
-            this.buttonViewParseTree.TabIndex = 3;
-            this.buttonViewParseTree.Text = "View Tree";
-            this.buttonViewParseTree.Click += new System.EventHandler(this.buttonViewParseTree_Click);
+            this.splitMain.Panel1.Controls.Add(this.textScript);
+            this.splitMain.Panel1.Controls.Add(this.buttonRunScript);
             // 
-            // buttonCompile
+            // splitMain.Panel2
             // 
-            this.buttonCompile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCompile.Enabled = false;
-            this.buttonCompile.Location = new System.Drawing.Point(1274, 315);
-            this.buttonCompile.Name = "buttonCompile";
-            this.buttonCompile.Size = new System.Drawing.Size(75, 23);
-            this.buttonCompile.TabIndex = 2;
-            this.buttonCompile.Text = "Compile";
-            this.buttonCompile.Click += new System.EventHandler(this.buttonCompile_Click);
+            this.splitMain.Panel2.Controls.Add(this.tabResults);
+            this.splitMain.Size = new System.Drawing.Size(1045, 470);
+            this.splitMain.SplitterDistance = 270;
+            this.splitMain.TabIndex = 3;
             // 
-            // buttonRun
+            // textScript
             // 
-            this.buttonRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRun.Enabled = false;
-            this.buttonRun.Location = new System.Drawing.Point(1355, 315);
-            this.buttonRun.Name = "buttonRun";
-            this.buttonRun.Size = new System.Drawing.Size(75, 23);
-            this.buttonRun.TabIndex = 1;
-            this.buttonRun.Text = "Run";
-            this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
-            // 
-            // editScript
-            // 
-            this.editScript.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textScript.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.editScript.Location = new System.Drawing.Point(4, 3);
-            this.editScript.MenuManager = this.ribbonMenu;
-            this.editScript.Name = "editScript";
-            this.editScript.Size = new System.Drawing.Size(1433, 301);
-            this.editScript.TabIndex = 0;
-            this.editScript.EditValueChanged += new System.EventHandler(this.editScript_EditValueChanged);
+            this.textScript.Location = new System.Drawing.Point(4, 0);
+            this.textScript.Multiline = true;
+            this.textScript.Name = "textScript";
+            this.textScript.Size = new System.Drawing.Size(1038, 230);
+            this.textScript.TabIndex = 1;
+            this.textScript.TextChanged += new System.EventHandler(this.textScript_TextChanged);
             // 
-            // xtraTabOutput
+            // buttonRunScript
             // 
-            this.xtraTabOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.xtraTabOutput.Location = new System.Drawing.Point(3, 1);
-            this.xtraTabOutput.Name = "xtraTabOutput";
-            this.xtraTabOutput.SelectedTabPage = this.xtraTabResults;
-            this.xtraTabOutput.Size = new System.Drawing.Size(1439, 349);
-            this.xtraTabOutput.TabIndex = 0;
-            this.xtraTabOutput.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabResults,
-            this.xtraTabConsole,
-            this.xtraTabParseTree,
-            this.xtraTabMemory});
-            this.xtraTabOutput.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabScript_SelectedPageChanged);
+            this.buttonRunScript.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRunScript.Location = new System.Drawing.Point(944, 236);
+            this.buttonRunScript.Name = "buttonRunScript";
+            this.buttonRunScript.Size = new System.Drawing.Size(98, 27);
+            this.buttonRunScript.TabIndex = 0;
+            this.buttonRunScript.Text = "Run Script";
+            this.buttonRunScript.UseVisualStyleBackColor = true;
+            this.buttonRunScript.Click += new System.EventHandler(this.buttonRunScript_Click);
             // 
-            // xtraTabResults
+            // tabResults
             // 
-            this.xtraTabResults.Controls.Add(this.editScriptOutput);
-            this.xtraTabResults.Name = "xtraTabResults";
-            this.xtraTabResults.Size = new System.Drawing.Size(1433, 321);
-            this.xtraTabResults.Text = "Output";
+            this.tabResults.Controls.Add(this.tabResult);
+            this.tabResults.Controls.Add(this.tabOutput);
+            this.tabResults.Controls.Add(this.tabGrammarTree);
+            this.tabResults.Controls.Add(this.tabMemory);
+            this.tabResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabResults.ImageList = this.ilTabs;
+            this.tabResults.Location = new System.Drawing.Point(0, 0);
+            this.tabResults.Name = "tabResults";
+            this.tabResults.SelectedIndex = 0;
+            this.tabResults.Size = new System.Drawing.Size(1045, 196);
+            this.tabResults.TabIndex = 0;
             // 
-            // editScriptOutput
+            // tabResult
             // 
-            this.editScriptOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.editScriptOutput.Location = new System.Drawing.Point(0, 0);
-            this.editScriptOutput.MenuManager = this.ribbonMenu;
-            this.editScriptOutput.Name = "editScriptOutput";
-            this.editScriptOutput.Properties.ReadOnly = true;
-            this.editScriptOutput.Size = new System.Drawing.Size(1433, 321);
-            this.editScriptOutput.TabIndex = 0;
+            this.tabResult.Controls.Add(this.textResult);
+            this.tabResult.Location = new System.Drawing.Point(4, 25);
+            this.tabResult.Name = "tabResult";
+            this.tabResult.Size = new System.Drawing.Size(1037, 167);
+            this.tabResult.TabIndex = 1;
+            this.tabResult.Text = "Result";
+            this.tabResult.UseVisualStyleBackColor = true;
             // 
-            // xtraTabConsole
+            // textResult
             // 
-            this.xtraTabConsole.Appearance.Header.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.xtraTabConsole.Appearance.PageClient.BackColor = System.Drawing.Color.Maroon;
-            this.xtraTabConsole.Appearance.PageClient.Options.UseBackColor = true;
-            this.xtraTabConsole.Controls.Add(this.editOutput);
-            this.xtraTabConsole.Name = "xtraTabConsole";
-            this.xtraTabConsole.Size = new System.Drawing.Size(1433, 321);
-            this.xtraTabConsole.Text = "Console";
+            this.textResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textResult.Location = new System.Drawing.Point(0, 0);
+            this.textResult.Multiline = true;
+            this.textResult.Name = "textResult";
+            this.textResult.Size = new System.Drawing.Size(1037, 167);
+            this.textResult.TabIndex = 0;
             // 
-            // editOutput
+            // tabOutput
             // 
-            this.editOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.editOutput.Location = new System.Drawing.Point(3, 3);
-            this.editOutput.MenuManager = this.ribbonMenu;
-            this.editOutput.Name = "editOutput";
-            this.editOutput.Properties.ReadOnly = true;
-            this.editOutput.Size = new System.Drawing.Size(1427, 369);
-            this.editOutput.TabIndex = 1;
+            this.tabOutput.Controls.Add(this.textOutput);
+            this.tabOutput.Location = new System.Drawing.Point(4, 25);
+            this.tabOutput.Name = "tabOutput";
+            this.tabOutput.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOutput.Size = new System.Drawing.Size(1037, 167);
+            this.tabOutput.TabIndex = 0;
+            this.tabOutput.Text = "Output";
+            this.tabOutput.UseVisualStyleBackColor = true;
             // 
-            // xtraTabParseTree
+            // textOutput
             // 
-            this.xtraTabParseTree.Controls.Add(this.pictureParseTree);
-            this.xtraTabParseTree.Name = "xtraTabParseTree";
-            this.xtraTabParseTree.Size = new System.Drawing.Size(1433, 321);
-            this.xtraTabParseTree.Text = "Parse Tree View";
+            this.textOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textOutput.Location = new System.Drawing.Point(3, 3);
+            this.textOutput.Multiline = true;
+            this.textOutput.Name = "textOutput";
+            this.textOutput.Size = new System.Drawing.Size(1031, 161);
+            this.textOutput.TabIndex = 0;
             // 
-            // pictureParseTree
+            // tabGrammarTree
             // 
-            this.pictureParseTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureParseTree.Location = new System.Drawing.Point(3, 3);
-            this.pictureParseTree.MenuManager = this.ribbonMenu;
-            this.pictureParseTree.Name = "pictureParseTree";
-            this.pictureParseTree.Properties.ReadOnly = true;
-            this.pictureParseTree.Properties.ShowScrollBars = true;
-            this.pictureParseTree.Properties.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.True;
-            this.pictureParseTree.Size = new System.Drawing.Size(1427, 369);
-            this.pictureParseTree.TabIndex = 0;
+            this.tabGrammarTree.Controls.Add(this.pictureGrammarTree);
+            this.tabGrammarTree.Location = new System.Drawing.Point(4, 25);
+            this.tabGrammarTree.Name = "tabGrammarTree";
+            this.tabGrammarTree.Size = new System.Drawing.Size(1037, 167);
+            this.tabGrammarTree.TabIndex = 2;
+            this.tabGrammarTree.Text = "Grammar Tree";
+            this.tabGrammarTree.UseVisualStyleBackColor = true;
             // 
-            // xtraTabMemory
+            // tabMemory
             // 
-            this.xtraTabMemory.Controls.Add(this.treeMemory);
-            this.xtraTabMemory.Name = "xtraTabMemory";
-            this.xtraTabMemory.Size = new System.Drawing.Size(1433, 321);
-            this.xtraTabMemory.Text = "Memory";
+            this.tabMemory.Controls.Add(this.lvMemory);
+            this.tabMemory.Location = new System.Drawing.Point(4, 25);
+            this.tabMemory.Name = "tabMemory";
+            this.tabMemory.Size = new System.Drawing.Size(1037, 167);
+            this.tabMemory.TabIndex = 3;
+            this.tabMemory.Text = "Memory";
+            this.tabMemory.UseVisualStyleBackColor = true;
             // 
-            // treeMemory
+            // lvMemory
             // 
-            this.treeMemory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeMemory.Location = new System.Drawing.Point(0, 0);
-            this.treeMemory.Name = "treeMemory";
-            this.treeMemory.OptionsBehavior.Editable = false;
-            this.treeMemory.Size = new System.Drawing.Size(1433, 321);
-            this.treeMemory.TabIndex = 0;
+            this.lvMemory.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chScope,
+            this.chName,
+            this.chSymbolType,
+            this.chSymbolDataType,
+            this.chSymbolValue});
+            this.lvMemory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvMemory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvMemory.Location = new System.Drawing.Point(0, 0);
+            this.lvMemory.MultiSelect = false;
+            this.lvMemory.Name = "lvMemory";
+            this.lvMemory.Size = new System.Drawing.Size(1037, 167);
+            this.lvMemory.TabIndex = 0;
+            this.lvMemory.UseCompatibleStateImageBehavior = false;
+            this.lvMemory.View = System.Windows.Forms.View.Details;
+            // 
+            // chScope
+            // 
+            this.chScope.Text = "Scope";
+            this.chScope.Width = 209;
+            // 
+            // chName
+            // 
+            this.chName.Text = "Name";
+            this.chName.Width = 201;
+            // 
+            // chSymbolType
+            // 
+            this.chSymbolType.Text = "Symbol Type";
+            this.chSymbolType.Width = 182;
+            // 
+            // chSymbolDataType
+            // 
+            this.chSymbolDataType.Text = "Symbol Data Type";
+            this.chSymbolDataType.Width = 181;
+            // 
+            // chSymbolValue
+            // 
+            this.chSymbolValue.Text = "Symbol Value";
+            this.chSymbolValue.Width = 171;
+            // 
+            // ilTabs
+            // 
+            this.ilTabs.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilTabs.ImageStream")));
+            this.ilTabs.TransparentColor = System.Drawing.Color.Transparent;
+            this.ilTabs.Images.SetKeyName(0, "error");
+            this.ilTabs.Images.SetKeyName(1, "info");
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(6, 27);
+            // 
+            // pictureGrammarTree
+            // 
+            this.pictureGrammarTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureGrammarTree.Location = new System.Drawing.Point(0, 0);
+            this.pictureGrammarTree.Name = "pictureGrammarTree";
+            this.pictureGrammarTree.Size = new System.Drawing.Size(1037, 167);
+            this.pictureGrammarTree.TabIndex = 0;
+            this.pictureGrammarTree.TabStop = false;
+            // 
+            // menuStripCompile
+            // 
+            this.menuStripCompile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.menuStripCompile.Image = global::JiahuScriptRunner.Properties.Resources.table_refresh;
+            this.menuStripCompile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menuStripCompile.Name = "menuStripCompile";
+            this.menuStripCompile.Size = new System.Drawing.Size(24, 24);
+            this.menuStripCompile.ToolTipText = "Compile";
+            // 
+            // menuStripGrammarTree
+            // 
+            this.menuStripGrammarTree.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.menuStripGrammarTree.Image = global::JiahuScriptRunner.Properties.Resources.chart_organisation;
+            this.menuStripGrammarTree.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menuStripGrammarTree.Name = "menuStripGrammarTree";
+            this.menuStripGrammarTree.Size = new System.Drawing.Size(24, 24);
+            this.menuStripGrammarTree.ToolTipText = "Show Grammar Tree";
+            this.menuStripGrammarTree.Click += new System.EventHandler(this.menuStripGrammarTree_Click);
+            // 
+            // menuStripRun
+            // 
+            this.menuStripRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.menuStripRun.Image = global::JiahuScriptRunner.Properties.Resources.script_lightning;
+            this.menuStripRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menuStripRun.Name = "menuStripRun";
+            this.menuStripRun.Size = new System.Drawing.Size(24, 24);
+            this.menuStripRun.ToolTipText = "Run Script";
+            // 
+            // menuStripExternalFunctions
+            // 
+            this.menuStripExternalFunctions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.menuStripExternalFunctions.Image = global::JiahuScriptRunner.Properties.Resources.plugin;
+            this.menuStripExternalFunctions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menuStripExternalFunctions.Name = "menuStripExternalFunctions";
+            this.menuStripExternalFunctions.Size = new System.Drawing.Size(24, 24);
+            this.menuStripExternalFunctions.ToolTipText = "View External Functions";
+            this.menuStripExternalFunctions.Click += new System.EventHandler(this.menuStripExternalFunctions_Click);
+            // 
+            // menuStripExternalObjects
+            // 
+            this.menuStripExternalObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.menuStripExternalObjects.Image = global::JiahuScriptRunner.Properties.Resources.brick;
+            this.menuStripExternalObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menuStripExternalObjects.Name = "menuStripExternalObjects";
+            this.menuStripExternalObjects.Size = new System.Drawing.Size(24, 24);
+            this.menuStripExternalObjects.ToolTipText = "View External Objects";
+            this.menuStripExternalObjects.Click += new System.EventHandler(this.menuStripExternalObjects_Click);
+            // 
+            // menuItemFileOpen
+            // 
+            this.menuItemFileOpen.Image = global::JiahuScriptRunner.Properties.Resources.page_white;
+            this.menuItemFileOpen.Name = "menuItemFileOpen";
+            this.menuItemFileOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.menuItemFileOpen.Size = new System.Drawing.Size(173, 26);
+            this.menuItemFileOpen.Text = "Open";
+            this.menuItemFileOpen.Click += new System.EventHandler(this.menuItemFileOpen_Click);
+            // 
+            // menuItemFileSave
+            // 
+            this.menuItemFileSave.Image = global::JiahuScriptRunner.Properties.Resources.page_save;
+            this.menuItemFileSave.Name = "menuItemFileSave";
+            this.menuItemFileSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.menuItemFileSave.Size = new System.Drawing.Size(173, 26);
+            this.menuItemFileSave.Text = "Save";
+            this.menuItemFileSave.Click += new System.EventHandler(this.menuItemFileSave_Click);
+            // 
+            // menuItemFileExit
+            // 
+            this.menuItemFileExit.Image = global::JiahuScriptRunner.Properties.Resources.cross;
+            this.menuItemFileExit.Name = "menuItemFileExit";
+            this.menuItemFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.menuItemFileExit.Size = new System.Drawing.Size(173, 26);
+            this.menuItemFileExit.Text = "Exit";
+            this.menuItemFileExit.Click += new System.EventHandler(this.menuItemFileExit_Click);
+            // 
+            // menuItemEditCut
+            // 
+            this.menuItemEditCut.Image = global::JiahuScriptRunner.Properties.Resources.cut;
+            this.menuItemEditCut.Name = "menuItemEditCut";
+            this.menuItemEditCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.menuItemEditCut.Size = new System.Drawing.Size(169, 26);
+            this.menuItemEditCut.Text = "Cut";
+            this.menuItemEditCut.Click += new System.EventHandler(this.menuItemEditCut_Click);
+            // 
+            // menuItemEditCopy
+            // 
+            this.menuItemEditCopy.Image = global::JiahuScriptRunner.Properties.Resources.page_copy;
+            this.menuItemEditCopy.Name = "menuItemEditCopy";
+            this.menuItemEditCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.menuItemEditCopy.Size = new System.Drawing.Size(169, 26);
+            this.menuItemEditCopy.Text = "Copy";
+            this.menuItemEditCopy.Click += new System.EventHandler(this.menuItemEditCopy_Click);
+            // 
+            // menuItemEditPaste
+            // 
+            this.menuItemEditPaste.Image = global::JiahuScriptRunner.Properties.Resources.paste_plain;
+            this.menuItemEditPaste.Name = "menuItemEditPaste";
+            this.menuItemEditPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.menuItemEditPaste.Size = new System.Drawing.Size(169, 26);
+            this.menuItemEditPaste.Text = "Paste";
+            this.menuItemEditPaste.Click += new System.EventHandler(this.menuItemEditPaste_Click);
+            // 
+            // menuItemBuildCompile
+            // 
+            this.menuItemBuildCompile.Image = global::JiahuScriptRunner.Properties.Resources.table_refresh;
+            this.menuItemBuildCompile.Name = "menuItemBuildCompile";
+            this.menuItemBuildCompile.Size = new System.Drawing.Size(231, 26);
+            this.menuItemBuildCompile.Text = "Compile";
+            this.menuItemBuildCompile.Click += new System.EventHandler(this.menuItemBuildCompile_Click);
+            // 
+            // menuItemBuildGrammarTree
+            // 
+            this.menuItemBuildGrammarTree.Image = global::JiahuScriptRunner.Properties.Resources.chart_organisation;
+            this.menuItemBuildGrammarTree.Name = "menuItemBuildGrammarTree";
+            this.menuItemBuildGrammarTree.Size = new System.Drawing.Size(231, 26);
+            this.menuItemBuildGrammarTree.Text = "Display Grammar Tree";
+            this.menuItemBuildGrammarTree.Click += new System.EventHandler(this.menuItemBuildGrammarTree_Click);
+            // 
+            // menuItemBuildRun
+            // 
+            this.menuItemBuildRun.Image = global::JiahuScriptRunner.Properties.Resources.script_lightning;
+            this.menuItemBuildRun.Name = "menuItemBuildRun";
+            this.menuItemBuildRun.Size = new System.Drawing.Size(231, 26);
+            this.menuItemBuildRun.Text = "Run";
+            this.menuItemBuildRun.Click += new System.EventHandler(this.menuItemBuildRun_Click);
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1442, 838);
+            this.ClientSize = new System.Drawing.Size(1045, 547);
             this.Controls.Add(this.splitMain);
-            this.Controls.Add(this.ribbonStatusBar);
-            this.Controls.Add(this.ribbonMenu);
+            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.toolStrip);
+            this.Controls.Add(this.mainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.mainMenu;
             this.Name = "MainWindow";
-            this.Text = "Jiahu Script";
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonMenu)).EndInit();
+            this.Text = "Jiahu Script Runner";
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
+            this.splitMain.Panel1.ResumeLayout(false);
+            this.splitMain.Panel1.PerformLayout();
+            this.splitMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
             this.splitMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.editScript.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabOutput)).EndInit();
-            this.xtraTabOutput.ResumeLayout(false);
-            this.xtraTabResults.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.editScriptOutput.Properties)).EndInit();
-            this.xtraTabConsole.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.editOutput.Properties)).EndInit();
-            this.xtraTabParseTree.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureParseTree.Properties)).EndInit();
-            this.xtraTabMemory.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treeMemory)).EndInit();
+            this.tabResults.ResumeLayout(false);
+            this.tabResult.ResumeLayout(false);
+            this.tabResult.PerformLayout();
+            this.tabOutput.ResumeLayout(false);
+            this.tabOutput.PerformLayout();
+            this.tabGrammarTree.ResumeLayout(false);
+            this.tabMemory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGrammarTree)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -429,37 +515,47 @@
 
         #endregion
 
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonMenu;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageHome;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupFile;
-        private DevExpress.XtraBars.BarButtonItem barButtonExit;
-        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
-        private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGalleryBarItem1;
-        private DevExpress.XtraEditors.SplitContainerControl splitMain;
-        private DevExpress.XtraEditors.SimpleButton buttonCompile;
-        private DevExpress.XtraEditors.SimpleButton buttonRun;
-        private DevExpress.XtraEditors.MemoEdit editScript;
-        private DevExpress.XtraTab.XtraTabControl xtraTabOutput;
-        private DevExpress.XtraTab.XtraTabPage xtraTabResults;
-        private DevExpress.XtraTab.XtraTabPage xtraTabConsole;
-        private DevExpress.XtraTab.XtraTabPage xtraTabParseTree;
-        private DevExpress.XtraEditors.MemoEdit editScriptOutput;
-        private DevExpress.XtraEditors.MemoEdit editOutput;
-        private DevExpress.XtraEditors.PictureEdit pictureParseTree;
-        private DevExpress.XtraEditors.SimpleButton buttonViewParseTree;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupScriptActions;
-        private DevExpress.XtraBars.BarButtonItem barButtonRun;
-        private DevExpress.XtraBars.BarButtonItem barButtonCompile;
-        private DevExpress.XtraBars.BarButtonItem barButtonViewTree;
-        private DevExpress.XtraBars.BarButtonItem barButtonProperties;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupUtilities;
-        private DevExpress.XtraBars.BarButtonItem barButtonSaveAs;
-        private DevExpress.XtraBars.BarButtonItem barButtonSave;
-        private DevExpress.XtraBars.BarButtonItem barButtonOpen;
-        private DevExpress.XtraTab.XtraTabPage xtraTabMemory;
-        private DevExpress.XtraTreeList.TreeList treeMemory;
-        private DevExpress.XtraBars.BarButtonItem barButtonExternalFunctions;
-        private DevExpress.XtraBars.BarButtonItem barButtonItemExternalObjects;
+        private System.Windows.Forms.MenuStrip mainMenu;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFileExit;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.SplitContainer splitMain;
+        private System.Windows.Forms.TextBox textScript;
+        private System.Windows.Forms.Button buttonRunScript;
+        private System.Windows.Forms.TabControl tabResults;
+        private System.Windows.Forms.TabPage tabOutput;
+        private System.Windows.Forms.ToolStripMenuItem menuItemEdit;
+        private System.Windows.Forms.ToolStripMenuItem menuItemEditCut;
+        private System.Windows.Forms.ToolStripMenuItem menuItemEditCopy;
+        private System.Windows.Forms.ToolStripMenuItem menuItemEditPaste;
+        private System.Windows.Forms.ToolStripMenuItem hELPToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabResult;
+        private System.Windows.Forms.TextBox textOutput;
+        private System.Windows.Forms.TabPage tabGrammarTree;
+        private System.Windows.Forms.PictureBox pictureGrammarTree;
+        private System.Windows.Forms.ToolStripMenuItem menuItemBuild;
+        private System.Windows.Forms.ToolStripMenuItem menuItemBuildCompile;
+        private System.Windows.Forms.ToolStripMenuItem menuItemBuildGrammarTree;
+        private System.Windows.Forms.ToolStripMenuItem menuItemBuildRun;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFileOpen;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFileSaveAs;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFileSave;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton menuStripCompile;
+        private System.Windows.Forms.ToolStripButton menuStripGrammarTree;
+        private System.Windows.Forms.ToolStripButton menuStripRun;
+        private System.Windows.Forms.TabPage tabMemory;
+        private System.Windows.Forms.TextBox textResult;
+        private System.Windows.Forms.ListView lvMemory;
+        private System.Windows.Forms.ColumnHeader chScope;
+        private System.Windows.Forms.ColumnHeader chName;
+        private System.Windows.Forms.ColumnHeader chSymbolType;
+        private System.Windows.Forms.ColumnHeader chSymbolDataType;
+        private System.Windows.Forms.ColumnHeader chSymbolValue;
+        private System.Windows.Forms.ImageList ilTabs;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+        private System.Windows.Forms.ToolStripButton menuStripExternalFunctions;
+        private System.Windows.Forms.ToolStripButton menuStripExternalObjects;
     }
 }
-

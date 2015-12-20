@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiahuScriptRuntime", "JiahuScriptRuntime\JiahuScriptRuntime.csproj", "{EACDC8AF-64E5-4DBA-9F7C-B45E3A381D8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiahuScriptRuntime.Tests", "JiahuScriptRuntime.Tests\JiahuScriptRuntime.Tests.csproj", "{AB6E51C2-7385-4C15-94E7-587CBF4BE225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiahuScriptRunner", "JiahuScriptRunner\JiahuScriptRunner.csproj", "{827CCCB6-32A6-4EF8-84AB-7196FB5EFD8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiahuScript.External.Examples", "JiahuScript.External.Examples\JiahuScript.External.Examples.csproj", "{139396A0-7F07-42E4-89FB-E3AD20A4A1BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EACDC8AF-64E5-4DBA-9F7C-B45E3A381D8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EACDC8AF-64E5-4DBA-9F7C-B45E3A381D8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EACDC8AF-64E5-4DBA-9F7C-B45E3A381D8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EACDC8AF-64E5-4DBA-9F7C-B45E3A381D8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB6E51C2-7385-4C15-94E7-587CBF4BE225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB6E51C2-7385-4C15-94E7-587CBF4BE225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB6E51C2-7385-4C15-94E7-587CBF4BE225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB6E51C2-7385-4C15-94E7-587CBF4BE225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{827CCCB6-32A6-4EF8-84AB-7196FB5EFD8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827CCCB6-32A6-4EF8-84AB-7196FB5EFD8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827CCCB6-32A6-4EF8-84AB-7196FB5EFD8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827CCCB6-32A6-4EF8-84AB-7196FB5EFD8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{139396A0-7F07-42E4-89FB-E3AD20A4A1BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{139396A0-7F07-42E4-89FB-E3AD20A4A1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{139396A0-7F07-42E4-89FB-E3AD20A4A1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{139396A0-7F07-42E4-89FB-E3AD20A4A1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

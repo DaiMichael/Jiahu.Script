@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExternalObjectsWindow));
-            this.buttonClose = new DevExpress.XtraEditors.SimpleButton();
-            this.splitContainerMain = new DevExpress.XtraEditors.SplitContainerControl();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.lvExternalObjects = new System.Windows.Forms.ListView();
-            this.splitObjectDataView = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitObjectDataView = new System.Windows.Forms.SplitContainer();
             this.treeObjectView = new System.Windows.Forms.TreeView();
             this.lvDataView = new System.Windows.Forms.ListView();
             this.ilTreeView = new System.Windows.Forms.ImageList(this.components);
@@ -67,7 +67,6 @@
             this.splitContainerMain.Panel2.Controls.Add(this.splitObjectDataView);
             this.splitContainerMain.Panel2.Text = "Panel2";
             this.splitContainerMain.Size = new System.Drawing.Size(1266, 579);
-            this.splitContainerMain.SplitterPosition = 222;
             this.splitContainerMain.TabIndex = 1;
             this.splitContainerMain.Text = "splitContainerControl1";
             // 
@@ -96,7 +95,6 @@
             this.splitObjectDataView.Panel2.Controls.Add(this.lvDataView);
             this.splitObjectDataView.Panel2.Text = "Panel2";
             this.splitObjectDataView.Size = new System.Drawing.Size(1039, 579);
-            this.splitObjectDataView.SplitterPosition = 313;
             this.splitObjectDataView.TabIndex = 0;
             this.splitObjectDataView.Text = "splitContainerControl1";
             // 
@@ -166,10 +164,10 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.SimpleButton buttonClose;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerMain;
+        private System.Windows.Forms.Button buttonClose;
+        private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.ListView lvExternalObjects;
-        private DevExpress.XtraEditors.SplitContainerControl splitObjectDataView;
+        private System.Windows.Forms.SplitContainer splitObjectDataView;
         private System.Windows.Forms.TreeView treeObjectView;
         private System.Windows.Forms.ListView lvDataView;
         private System.Windows.Forms.ImageList ilTreeView;
