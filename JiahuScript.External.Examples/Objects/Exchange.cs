@@ -1,4 +1,4 @@
-﻿namespace JiahuScriptRunner.Domain.ExternalObjects
+﻿namespace JiahuScript.External.Examples.Objects
 {
     public class Exchange
     {
