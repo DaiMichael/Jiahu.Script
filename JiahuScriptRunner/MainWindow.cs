@@ -33,6 +33,7 @@ namespace JiahuScriptRunner
 
             _applicationConfiguration = new ApplicationSettings().Load();
             textScript_TextChanged(null, null);
+            SetupExternalFunctionsAndObjects();
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
@@ -380,7 +381,8 @@ namespace JiahuScriptRunner
 
         private void menuStripExternalObjects_Click(object sender, EventArgs e)
         {
-            using (ExternalObjectsWindow window = new ExternalObjectsWindow(_variableRepository.Select(x => x.Value).ToList()))
+            var externalSymbols = _variableRepository.Select(x => x.Value).Cast<SymbolValue<object>>();
+            using (ExternalObjectsWindow window = new ExternalObjectsWindow(externalSymbols.Select(x => x.Value).ToList()))
             {
                 window.ShowDialog(this);
             }

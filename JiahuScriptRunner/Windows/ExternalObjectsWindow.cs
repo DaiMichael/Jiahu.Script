@@ -22,9 +22,9 @@ namespace JiahuScriptRunner.Windows
             _externalObject = externalObject;
             InitializeComponent();
 
-            PopulateFunctionView();
+            PopulateObjectView();
             SelectDefaultFunction();
-            }
+        }
 
         private void SelectDefaultFunction()
         {
@@ -40,7 +40,7 @@ namespace JiahuScriptRunner.Windows
             Close();
         }
 
-        private void PopulateFunctionView()
+        private void PopulateObjectView()
         {
             lvExternalObjects.Columns.Add(new ColumnHeader { Text = ObjectTag, Width = lvExternalObjects.Width - ColumnWidthOffset });
 
